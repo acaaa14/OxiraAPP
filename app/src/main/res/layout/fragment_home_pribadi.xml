@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- MAP -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- SEARCH BAR -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_search"
+        android:padding="12dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:src="@drawable/search"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
+
+        <EditText
+            android:hint="Cari Lokasi Oxigen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:paddingStart="8dp"/>
+    </LinearLayout>
+
+    <!-- BOTTOM SHEET -->
+    <include
+        layout="@layout/bottom_sheet_lokasi"
+        android:id="@+id/bottomSheetLokasi" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

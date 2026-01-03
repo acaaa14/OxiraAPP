@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomSheetLokasi"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet_lokasi"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvNamaRuko"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ruko Jakarta Sudirman"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvAlamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jl. Jenderal Sudirman No.88, Jakarta"
+        android:textSize="13sp"
+        android:textColor="#666666"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/tvStok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stok tersedia: 12 tabung"
+        android:textSize="14sp"
+        android:textColor="#2E7D32"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnSewa"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Sewa Tabung"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#0F5C4B"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnBeli"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Beli Tabung"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#0F5C4B"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
