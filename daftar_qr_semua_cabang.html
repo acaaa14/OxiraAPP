@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Semua Cabang Oxira</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 30px; background: #f0f2f5; color: #333; }
+        h1 { color: #0F5C4B; text-align: center; border-bottom: 3px solid #0F5C4B; padding-bottom: 10px; }
+        .section-title { background: #0F5C4B; color: white; padding: 10px 20px; border-radius: 8px; margin-top: 40px; font-size: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { background: white; padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 140px; height: 140px; margin-bottom: 10px; border: 1px solid #eee; }
+        .card p { font-weight: bold; font-size: 13px; margin: 5px 0 0; height: 40px; display: flex; align-items: center; justify-content: center; }
+        .type-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; margin-top: 5px; color: white; }
+        .sewa { background: #2196F3; }
+        .beli { background: #FF9800; }
+    </style>
+</head>
+<body>
+
+    <h1>Master QR Code Oxira APP - Semua Cabang</h1>
+    <p style="text-align:center">Gunakan halaman ini untuk simulasi scan di seluruh ruko Oxira.</p>
+
+    <!-- KATEGORI SEWA -->
+    <div class="section-title">QR CODE: PENYEWAAN (SEWA)</div>
+    <div class="grid" id="containerSewa">
+        <!-- Script akan mengisi otomatis -->
+    </div>
+
+    <!-- KATEGORI BELI -->
+    <div class="section-title">QR CODE: PEMBELIAN (BELI)</div>
+    <div class="grid" id="containerBeli">
+        <!-- Script akan mengisi otomatis -->
+    </div>
+
+    <script>
+        const cabang = [
+            "Oxira Jakarta Sudirman", "Oxira Jakarta Cengkareng", "Oxira Jakarta Senayan", "Oxira Jakarta Kelapa Gading", "Oxira Jakarta Kemang", "Oxira Jakarta Pluit", "Oxira Jakarta Blok M", "Oxira Jakarta Sunter", "Oxira Jakarta Grogol", "Oxira Jakarta Tebet",
+            "Oxira Bandung Pasteur", "Oxira Bandung Dago", "Oxira Bandung Asia Afrika", "Oxira Bandung Antapani", "Oxira Bandung Kopo", "Oxira Bandung Buah Batu", "Oxira Bandung Gedebage", "Oxira Bandung Setiabudi", "Oxira Bandung Lembang", "Oxira Bandung Cicadas",
+            "Oxira Bekasi Cyber Park", "Oxira Bekasi Summarecon", "Oxira Bekasi Harapan Indah", "Oxira Bekasi Tambun", "Oxira Bekasi Jatiasih",
+            "Oxira Depok Margonda", "Oxira Depok Cinere", "Oxira Depok Sawangan", "Oxira Depok UI", "Oxira Depok Cimanggis",
+            "Oxira Bogor Pajajaran", "Oxira Bogor Baranangsiang", "Oxira Bogor Yasmin", "Oxira Bogor Ciawi", "Oxira Bogor Sentul"
+        ];
+
+        const sContainer = document.getElementById('containerSewa');
+        const bContainer = document.getElementById('containerBeli');
+
+        cabang.forEach(name => {
+            // Sewa
+            sContainer.innerHTML += `
+                <div class="card">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(name)}">
+                    <p>${name}</p>
+                    <span class="type-badge sewa">MODE SEWA</span>
+                </div>`;
+            // Beli
+            bContainer.innerHTML += `
+                <div class="card">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BELI_${encodeURIComponent(name.replace(/ /g, '_'))}">
+                    <p>${name}</p>
+                    <span class="type-badge beli">MODE BELI</span>
+                </div>`;
+        });
+    </script>
+</body>
+</html>

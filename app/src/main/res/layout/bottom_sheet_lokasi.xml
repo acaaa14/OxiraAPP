@@ -1,55 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheetLokasi"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/bg_bottom_sheet_lokasi"
-    android:padding="16dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="24dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+    <!-- HANDLE BAR -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#DDDDDD"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- LABEL DINAMIS -->
     <TextView
-        android:id="@+id/tvNamaRuko"
-        android:layout_width="match_parent"
+        android:id="@+id/tvLabelBottomSheet"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ruko Jakarta Sudirman"
-        android:textSize="16sp"
+        android:text="Lihat lokasi yang tersedia"
+        android:textSize="14sp"
         android:textStyle="bold"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/tvAlamat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Jl. Jenderal Sudirman No.88, Jakarta"
-        android:textSize="13sp"
         android:textColor="#666666"
-        android:layout_marginTop="4dp" />
+        android:layout_marginBottom="8dp"/>
 
+    <!-- LIST CONTAINER -->
+    <!-- Diberi height 0dp dan weight 1 agar list mengalah pada tombol di bawah -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="150dp"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:id="@+id/containerLokasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- INFO STOK -->
     <TextView
         android:id="@+id/tvStok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stok: -"
+        android:visibility="gone"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#0F5C4B"
+        android:layout_marginBottom="12dp" />
+
+    <!-- TOMBOL AKSI -->
+    <LinearLayout
+        android:id="@+id/layoutActionButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stok tersedia: 12 tabung"
-        android:textSize="14sp"
-        android:textColor="#2E7D32"
-        android:layout_marginTop="8dp" />
+        android:orientation="vertical"
+        android:visibility="gone">
+        
+        <Button
+            android:id="@+id/btnSewa"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Sewa Tabung"
+            android:backgroundTint="#0F5C4B"
+            android:textAllCaps="false"
+            app:cornerRadius="24dp"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/btnSewa"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="Sewa Tabung"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#0F5C4B"
-        android:textColor="#FFFFFF" />
-
-    <Button
-        android:id="@+id/btnBeli"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="Beli Tabung"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#0F5C4B"
-        android:textColor="#FFFFFF" />
+        <Button
+            android:id="@+id/btnBeli"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Beli Tabung"
+            android:backgroundTint="#0F5C4B"
+            android:textAllCaps="false"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
 
 </LinearLayout>

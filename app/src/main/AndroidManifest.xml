@@ -4,30 +4,18 @@
     package="com.example.oxiraapp">
 
     <!-- ================= PERMISSIONS ================= -->
-
-    <!-- Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- Location (Google Maps) -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- Camera (QR Scan & Foto Tabung) -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
 
-    <!-- Gallery (Upload Foto) -->
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-
-    <!-- ================= HARDWARE FEATURES ================= -->
-
-    <!-- Kamera opsional (supaya device tanpa kamera tetap bisa install) -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <!-- ================= APPLICATION ================= -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -37,8 +25,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OxiraAPP">
 
-
-        <!-- ================= SPLASH (LAUNCHER) ================= -->
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true"
@@ -49,7 +35,6 @@
             </intent-filter>
         </activity>
 
-        <!-- ================= AUTH ================= -->
         <activity
             android:name=".activities.LoginActivity"
             android:exported="false"
@@ -63,31 +48,36 @@
             android:name=".activities.ForgotPasswordActivity"
             android:exported="false" />
 
-        <!-- ================= MAIN PRIBADI ================= -->
         <activity
             android:name=".activities.MainPribadiActivity"
             android:exported="false"
-            android:launchMode="singleTop"
-            android:noHistory="true" />
+            android:launchMode="singleTop" />
 
-        <!-- ================= MAIN PERUSAHAAN ================= -->
         <activity
             android:name=".activities.MainPerusahaanActivity"
             android:exported="false"
-            android:launchMode="singleTop"
-            android:noHistory="true" />
+            android:launchMode="singleTop" />
 
-        <!-- ================= MAPS ================= -->
         <activity
             android:name=".activities.MapsActivity"
             android:exported="false" />
+        
         <activity
             android:name=".activities.KerjasamaActivity"
             android:exported="false" />
+        
         <activity
             android:name=".activities.ScanBarcodeActivity"
             android:exported="false" />
 
-    </application>
+        <activity
+            android:name=".activities.FormPeminjamanActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name=".activities.FormPembelianActivity"
+            android:exported="false" />
+
+    </application>
 </manifest>

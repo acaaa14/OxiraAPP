@@ -3,6 +3,68 @@
   <component name="GhostTextManager">
     <option name="inputs">
       <map>
+        <entry key="Cannot resolve symbol 'bottomSheetLokasi'Cannot resolve symbol 'etSearch'">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1767431980953" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="Cannot resolve symbol 'etSearch'">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1767432038659" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="aplikasinnya gabisa di ruun">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="2.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1767438787628" />
+                  <option value="1767438730064" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="aplikasinnya keluar saat di runn">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="2.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1767438688602" />
+                  <option value="1767438594367" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="kenapa aplikasinnya saat di runn setelah login keluar">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1767431362616" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
         <entry key="kenapa saat di aplikasi saya ingin mencet daftar daftar malah gagal?">
           <value>
             <GhostTextMetaData>
@@ -10,6 +72,18 @@
               <option name="timestamps">
                 <list>
                   <option value="1766579678555" />
+                </list>
+              </option>
+            </GhostTextMetaData>
+          </value>
+        </entry>
+        <entry key="logcat merah tetep aplikasinya keluar">
+          <value>
+            <GhostTextMetaData>
+              <option name="count" value="1.0" />
+              <option name="timestamps">
+                <list>
+                  <option value="1767431563991" />
                 </list>
               </option>
             </GhostTextMetaData>

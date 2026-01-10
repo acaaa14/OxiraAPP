@@ -8,6 +8,7 @@ public class User {
     public String nama;
     public String nik;
     public String ttl;
+    public String ktpImageUri; // Tambahkan ini
 
     // Perusahaan
     public String namaPerusahaan;

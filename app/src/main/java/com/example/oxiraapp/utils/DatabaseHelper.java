@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // ================= DATABASE =================
     private static final String DATABASE_NAME = "oxira.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5; // Naikkan versi karena tambah kolom
 
     // ================= TABLE =================
     public static final String TABLE_USER = "users";
@@ -29,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_EMAIL = "email";
     public static final String COL_PASSWORD = "password";
     public static final String COL_KATEGORI = "kategori";
+    public static final String COL_KTP_IMAGE = "ktp_image"; // Kolom baru untuk URI KTP
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,7 +49,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_NOHP + " TEXT NOT NULL, " +
                 COL_EMAIL + " TEXT UNIQUE NOT NULL, " +
                 COL_PASSWORD + " TEXT NOT NULL, " +
-                COL_KATEGORI + " TEXT NOT NULL" +
+                COL_KATEGORI + " TEXT NOT NULL, " +
+                COL_KTP_IMAGE + " TEXT" +
                 ")";
         db.execSQL(sql);
     }
@@ -70,7 +72,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String password,
             String namaPerusahaan,
             String penanggungJawab,
-            String kategori
+            String kategori,
+            String ktpImageUri
     ) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -80,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_EMAIL, email);
         values.put(COL_PASSWORD, password);
         values.put(COL_KATEGORI, kategori);
+        values.put(COL_KTP_IMAGE, ktpImageUri);
 
         if (kategori.equalsIgnoreCase("Perusahaan")) {
             values.put(COL_NAMA_PERUSAHAAN, namaPerusahaan);
@@ -141,6 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             u.noHp = c.getString(c.getColumnIndexOrThrow(COL_NOHP));
             u.email = c.getString(c.getColumnIndexOrThrow(COL_EMAIL));
             u.kategori = c.getString(c.getColumnIndexOrThrow(COL_KATEGORI));
+            u.ktpImageUri = c.getString(c.getColumnIndexOrThrow(COL_KTP_IMAGE));
             c.close();
             return u;
         }

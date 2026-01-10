@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Formulir Peminjaman"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#0F5C4B"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- TABEL ESTIMASI DURASI SESUAI GAMBAR -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="24dp">
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#0F5C4B"
+                android:padding="8dp">
+                
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Panduan Estimasi Durasi Tabung"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="0,1,2">
+
+                    <!-- Header Tabel -->
+                    <TableRow android:background="#1AFFFFFF">
+                        <TextView android:text="Ukuran Tabung" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="10sp" android:textStyle="bold" android:gravity="center"/>
+                        <TextView android:text="Bukaan Regulator" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="10sp" android:textStyle="bold" android:gravity="center"/>
+                        <TextView android:text="Estimasi Durasi (Maks)" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="10sp" android:textStyle="bold" android:gravity="center"/>
+                    </TableRow>
+
+                    <!-- Baris 1m3 -->
+                    <TableRow android:paddingVertical="4dp">
+                        <TextView android:text="1 m³" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                        <TextView android:text="Di angka 2\nDi angka 4\nDi angka 6\nDi angka 8" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                        <TextView android:text="Habis 4 Jam (non stop)\nHabis 2 Jam (non stop)\nHabis 1 Jam (non stop)\nHabis 30 Menit (non stop)" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                    </TableRow>
+
+                    <!-- Baris 1.5m3 -->
+                    <TableRow android:background="#0DFFFFFF" android:paddingVertical="4dp">
+                        <TextView android:text="1.5 m³" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                        <TextView android:text="Di angka 2\nDi angka 4\nDi angka 6\nDi angka 8" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                        <TextView android:text="Habis 6 Jam (non stop)\nHabis 4 Jam (non stop)\nHabis 2 Jam (non stop)\nHabis 1 Jam (non stop)" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                    </TableRow>
+
+                    <!-- Baris 2m3 -->
+                    <TableRow android:paddingVertical="4dp">
+                        <TextView android:text="2 m³" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                        <TextView android:text="Di angka 2\nDi angka 4\nDi angka 6\nDi angka 8\nDi angka 10\nDi angka 12" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                        <TextView android:text="Habis 8 Jam (non stop)\nHabis 6 Jam (non stop)\nHabis 4 Jam (non stop)\nHabis 2 Jam (non stop)\nHabis 1 Jam (non stop)\nHabis 30 Menit (non stop)" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                    </TableRow>
+
+                    <!-- Baris 6m3 -->
+                    <TableRow android:background="#0DFFFFFF" android:paddingVertical="4dp">
+                        <TextView android:text="6 m³" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                        <TextView android:text="Di angka 2\nDi angka 4\nDi angka 6\nDi angka 8\nDi angka 10\nDi angka 12" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                        <TextView android:text="Habis 24 Jam (non stop)\nHabis 12 Jam (non stop)\nHabis 6 Jam (non stop)\nHabis 3 Jam (non stop)\nHabis 1,5 Jam (non stop)\nHabis 45 Menit (non stop)" android:textColor="#FFFFFF" android:padding="4dp" android:textSize="9sp" android:gravity="center"/>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- DATA DIRI (AUTO FILL) -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Data Peminjam" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+        
+        <EditText
+            android:id="@+id/etNama"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Nama Lengkap"
+            android:enabled="false"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_search"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etNIK"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="NIK KTP"
+            android:enabled="false"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_search"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Foto KTP Terdaftar" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#EEEEEE">
+            <ImageView
+                android:id="@+id/ivKtpPeminjam"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- PILIH UKURAN TABUNG -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pilih Ukuran Tabung" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+        <Spinner
+            android:id="@+id/spUkuranTabung"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_search"
+            android:layout_marginBottom="16dp" />
+
+        <!-- DETAIL PEMINJAMAN -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Detail Peminjaman" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etKeperluan"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Keperluan Peminjaman"
+            android:textColor="#FFFFFF"
+            android:gravity="top"
+            android:background="@drawable/bg_search"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="8dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tgl Pinjam" android:textSize="12sp"/>
+                <EditText android:id="@+id/etTglPinjam" android:textColor="#FFFFFF" android:layout_width="match_parent" android:layout_height="50dp" android:focusable="false" android:clickable="true" android:hint="Pilih Tgl" android:background="@drawable/bg_search" android:paddingHorizontal="12dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tgl Kembali" android:textSize="12sp"/>
+                <EditText android:id="@+id/etTglKembali" android:textColor="#FFFFFF" android:layout_width="match_parent" android:layout_height="50dp" android:focusable="false" android:clickable="true" android:hint="Pilih Tgl" android:background="@drawable/bg_search" android:paddingHorizontal="12dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ESTIMASI BIAYA -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#E8F5E9">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estimasi Biaya Sewa"
+                    android:textSize="12sp"
+                    android:textColor="#2E7D32"/>
+                <TextView
+                    android:id="@+id/tvTotalHarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp 0"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F5C4B"/>
+                <TextView
+                    android:id="@+id/tvRincianHarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pilih ukuran dan tanggal"
+                    android:textSize="11sp"
+                    android:textColor="#666666"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnKonfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="KONFIRMASI PEMINJAMAN"
+            android:backgroundTint="#0F5C4B"
+            android:layout_marginTop="24dp"
+            app:cornerRadius="28dp"/>
+
+    </LinearLayout>
+</ScrollView>

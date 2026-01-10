@@ -1,8 +1,13 @@
 package com.example.oxiraapp.activities;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.oxiraapp.R;
@@ -13,42 +18,58 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainPribadiActivity extends AppCompatActivity {
 
+    private static final int PERMISSION_REQUEST_CODE = 100;
     private BottomNavigationView bottomNavigationView;
-
-    // Fragment khusus pribadi
-    private final Fragment homeFragment = new HomeFragmentPribadi();
-    private final Fragment historyFragment = new HistoryFragment();
-    private final Fragment profileFragment = new ProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_pribadi);
 
+        checkPermissions();
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // default fragment
-        loadFragment(homeFragment);
+        if (savedInstanceState == null) {
+            loadFragment(new HomeFragmentPribadi());
+        }
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-
             int id = item.getItemId();
-
             if (id == R.id.menu_home) {
-                loadFragment(homeFragment);
+                loadFragment(new HomeFragmentPribadi());
+                return true;
+            } else if (id == R.id.menu_history) {
+                loadFragment(new HistoryFragment());
+                return true;
+            } else if (id == R.id.menu_profile) {
+                loadFragment(new ProfileFragment());
                 return true;
             }
-            else if (id == R.id.menu_history) {
-                loadFragment(historyFragment);
-                return true;
-            }
-            else if (id == R.id.menu_profile) {
-                loadFragment(profileFragment);
-                return true;
-            }
-
             return false;
         });
+    }
+
+    private void checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            }, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Izin diberikan", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Izin lokasi diperlukan untuk peta", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void loadFragment(Fragment fragment) {

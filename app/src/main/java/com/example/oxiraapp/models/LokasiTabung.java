@@ -1,4 +1,4 @@
-package com.example.oxiraapp.model;
+package com.example.oxiraapp.models;
 
 public class LokasiTabung {
     public String nama, alamat;
