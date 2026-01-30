@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // ✅ Tambahkan baris ini di bawah mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 

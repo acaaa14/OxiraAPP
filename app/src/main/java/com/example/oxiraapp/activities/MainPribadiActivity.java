@@ -15,6 +15,7 @@ import com.example.oxiraapp.fragments.HomeFragmentPribadi;
 import com.example.oxiraapp.fragments.HistoryFragment;
 import com.example.oxiraapp.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.midtrans.sdk.uikit.SdkUIFlowBuilder;
 
 public class MainPribadiActivity extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class MainPribadiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_pribadi);
-
+        initMidtrans();
         checkPermissions();
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -49,6 +50,15 @@ public class MainPribadiActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+    // ===================== MIDTRANS =====================
+    private void initMidtrans() {
+        SdkUIFlowBuilder.init()
+                .setClientKey("Mid-client-IyhJs7bjc_mVQHGS") // ganti client key kamu
+                .setContext(this)
+                .setMerchantBaseUrl("http://192.168.1.7:8000/")
+                .enableLog(true)
+                .buildSDK();
     }
 
     private void checkPermissions() {
@@ -78,4 +88,5 @@ public class MainPribadiActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, fragment)
                 .commit();
     }
+
 }

@@ -82,7 +82,7 @@ public class FormPeminjamanActivity extends AppCompatActivity {
         tvTotalHarga = findViewById(R.id.tvTotalHarga);
         tvRincianHarga = findViewById(R.id.tvRincianHarga);
         spUkuranTabung = findViewById(R.id.spUkuranTabung);
-        btnKonfirmasi = findViewById(R.id.btnKonfirmasi);
+        btnKonfirmasi = findViewById(R.id.btnBayar);
     }
 
     private void setupSpinner() {

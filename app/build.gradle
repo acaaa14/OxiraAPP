@@ -4,9 +4,7 @@ plugins {
 
 android {
     namespace 'com.example.oxiraapp'
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.example.oxiraapp"
@@ -15,6 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,9 +23,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+
+    // ✅ Perbaikan duplikasi file META-INF
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            pickFirst 'META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version'
+            pickFirst 'META-INF/androidx.*'
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // ✅ Memaksa semua library menggunakan core-runtime terbaru agar tidak duplicate class
+        force 'androidx.core:core:1.13.1'
+        force 'androidx.core:core-ktx:1.13.1'
     }
 }
 
@@ -35,13 +52,20 @@ dependencies {
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
+    
+    implementation 'org.osmdroid:osmdroid-android:6.1.18'
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+    
+    // Midtrans SDK
+    implementation('com.midtrans:uikit:1.33.0') {
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+    
+    implementation 'com.android.volley:volley:1.2.1'
+
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    implementation 'org.osmdroid:osmdroid-android:6.1.18' // OpenStreetMap
-    implementation 'com.journeyapps:zxing-android-embedded:4.3.0' // QR Scanner
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.mlkit:text-recognition:16.0.0'
-
 }

@@ -49,7 +49,8 @@ public class MapsActivity extends AppCompatActivity {
             List<LokasiTabung> daftarLokasi = LokasiRepository.getDaftarLokasi();
             for (LokasiTabung lokasi : daftarLokasi) {
                 TextView tv = new TextView(this);
-                tv.setText(lokasi.nama + " - Stok: " + lokasi.stok);
+                // Menampilkan stok sewa dan stok beli secara terpisah
+                tv.setText(lokasi.nama + "\nSewa: " + lokasi.stokSewa + " tabung | Beli: " + lokasi.stokBeli + " tabung");
                 tv.setPadding(12, 12, 12, 12);
                 tv.setTextSize(14);
                 containerLokasi.addView(tv);

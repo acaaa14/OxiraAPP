@@ -1,204 +1,97 @@
-# 🫁 OXIRA – Oxygen Rental & Inventory Application
+# OxiraAPP - Emergency Oxygen Solution 🏥
 
-OXIRA adalah aplikasi mobile berbasis **Android (Android Studio)** yang dirancang untuk meningkatkan efisiensi pengelolaan tabung oksigen melalui **pelacakan otomatis berbasis QR Code**, sistem **sewa & beli tabung**, serta **pembayaran digital**.
-
-Aplikasi ini dikembangkan oleh **pengembang pemula** dengan fokus pada sistem yang **sederhana, terstruktur, dan dapat dikembangkan secara bertahap**.
+OxiraAPP adalah ekosistem digital terintegrasi untuk pemesanan, penyewaan, dan pembelian tabung oksigen secara real-time. Sistem ini menggabungkan kekuatan **Android Native (Java)** sebagai antarmuka pengguna dan **Laravel** sebagai backend engine untuk transaksi keuangan yang aman.
 
 ---
 
-## 📌 Latar Belakang
+## 🛠️ Tech Stack & Dependencies
 
-Pengelolaan tabung oksigen secara manual sering menimbulkan masalah seperti:
-- Kesalahan pencatatan stok
-- Sulitnya pelacakan tabung
-- Proses administrasi yang lambat
-- Risiko kehilangan dan kerusakan tanpa bukti yang jelas
+### Mobile Application (Android)
+- **Language:** Java
+- **UI:** XML Layouts with Material Design 3
+- **Maps:** `osmdroid` (OpenStreetMap) untuk pemetaan lokasi ruko.
+- **AI/OCR:** `Google ML Kit Text Recognition` untuk scan KTP otomatis.
+- **Scanning:** `ZXing Android Embedded` untuk validasi QR ruko.
+- **Network:** `Volley` untuk komunikasi API ke backend.
+- **Payment:** `Midtrans SDK (UI Kit)` untuk integrasi gerbang pembayaran.
 
-OXIRA hadir sebagai solusi digital dengan memanfaatkan:
-- QR Code
-- Maps (OpenStreetMap)
-- Sistem transaksi digital
-- Riwayat transaksi otomatis
-
----
-
-## 🎯 Tujuan Pengembangan
-
-Tujuan utama aplikasi OXIRA:
-1. Meningkatkan efisiensi pengelolaan tabung oksigen
-2. Mempermudah proses sewa dan beli tabung
-3. Menyediakan pelacakan tabung berbasis QR Code
-4. Meningkatkan keamanan transaksi dengan pembayaran digital
-5. Mengurangi kesalahan administrasi manual
+### Backend (Web API)
+- **Framework:** Laravel 10
+- **Language:** PHP 8.x
+- **Payment Engine:** Midtrans Snap (Sandbox Mode)
+- **Database:** MySQL (MariaDB)
+- **Tunneling:** Ngrok (untuk mengekspos localhost ke HTTPS publik)
 
 ---
 
-## 🧩 Ruang Lingkup Sistem
+## 📂 Struktur Folder Proyek
 
-### Platform
-- 📱 **Mobile Android** → Pelanggan
-- 🌐 **Website** → Admin (pengembangan tahap lanjutan)
-
-### Fokus Pengembangan Awal
-- Aplikasi pelanggan (Android)
-- Website admin akan dikembangkan setelah fitur pelanggan stabil
-
----
-
-## 🏗️ Arsitektur Sistem
-Android App (Pelanggan)
-|
-| REST API (FastAPI)
-|
-Database MySQL
-
-
----
-
-## 🗄️ Desain Database (Awal)
-
-Tabel utama:
-- `users` → data pelanggan
-- `tabung` → data tabung oksigen
-- `branch` → data cabang/ruko (awal 3 cabang, dapat ditambah)
+```text
+OxiraAPP/
+├── app/                        # [ANDROID STUDIO PROJECT]
+│   ├── src/main/java/          # Logika Bisnis (Java)
+│   │   └── com/example/oxiraapp/
+│   │       ├── activities/     # Splash, Login, Register, Form, Maps, Scan
+│   │       ├── fragments/      # Home (Peta), History, Profile
+│   │       ├── models/         # Model Data (User, Lokasi)
+│   │       └── utils/          # DatabaseHelper (SQLite), SessionManager
+│   ├── src/main/res/           # Resource (XML, Drawables, Layouts)
+│   │   ├── layout/             # Desain Antarmuka
+│   │   └── xml/                # network_security_config.xml (Izin HTTP)
+│   └── build.gradle            # Konfigurasi Build & Library
+├── oxira-backend/              # [LARAVEL BACKEND PROJECT]
+│   ├── app/Http/Controllers/   # API Controller (PaymentController)
+│   ├── routes/api.php          # Definisi Endpoint API
+│   ├── .env                    # Konfigurasi Server Key Midtrans
+│   └── database/migrations/    # Struktur Tabel MySQL
+├── daftar_qr_semua_cabang.html # Alat bantu simulasi Scan QR Cabang
+└── README.md                   # Dokumentasi Utama
+```
 
 ---
 
-## 🔐 Alur Sistem Pelanggan
+## 🚀 Fitur Unggulan
 
-### 1️⃣ Registrasi Pelanggan
-
-Pelanggan melakukan registrasi melalui aplikasi Android.
-
-**Form Registrasi:**
-- Input KTP  
-  - Menggunakan FastAPI
-  - Data otomatis terisi:
-    - Nama pelanggan
-    - NIK
-    - Tanggal lahir (TTL)
-    - Alamat (dapat diubah)
-- Kategori pelanggan:
-  - Pribadi
-  - Company
-- Email
-- Password
-
-Data akan disimpan ke database MySQL.
+1. **Smart Registration (OCR):** Pengguna cukup memotret KTP, dan sistem akan mengisi Nama, NIK, dan Alamat secara otomatis menggunakan kecerdasan buatan.
+2. **Dual-Stok Management:** Peta interaktif menampilkan sisa stok tabung untuk **Sewa** dan **Beli** secara terpisah di setiap ruko.
+3. **Dynamic Marker:** Icon ruko berubah menjadi **Merah** jika stok kritis/habis dan **Hijau** jika stok melimpah.
+4. **Automated Rental Calculator:** Menghitung biaya sewa secara presisi berdasarkan durasi hari (Tarif standar: Rp 25.000/hari).
+5. **Secure Payment Gate:** Transaksi dilindungi oleh Midtrans, mendukung metode pembayaran Gopay, Virtual Account, dan lainnya.
 
 ---
 
-### 2️⃣ Login Pelanggan
-- Login menggunakan email dan password
-- Validasi ke database
-- Tersedia fitur **Lupa Password**
+## ⚙️ Langkah Instalasi
+
+### 1. Konfigurasi Backend (Laravel)
+1. Masuk ke terminal folder `oxira-backend`.
+2. Jalankan `composer install`.
+3. Buat file `.env` dan masukkan:
+   ```env
+   MIDTRANS_SERVER_KEY=isi_server_key_sandbox_anda
+   APP_URL=isi_link_ngrok_anda
+   ```
+4. Jalankan server:
+   ```bash
+   php artisan serve --host=0.0.0.0 --port=8080
+   ```
+
+### 2. Ekspos Server (Ngrok)
+Karena HP Android membutuhkan HTTPS untuk keamanan Midtrans:
+1. Jalankan ngrok: `ngrok http 8080`.
+2. Salin URL HTTPS yang muncul (misal: `https://abcd.ngrok-free.app`).
+
+### 3. Konfigurasi Mobile (Android Studio)
+1. Buka folder `OxiraAPP` di Android Studio.
+2. Buka `FormPembelianActivity.java`.
+3. Tempel URL ngrok Anda pada variabel `URL_NGROK`.
+4. Pastikan `Client Key` di `initMidtransSDK` sudah benar.
+5. Klik **Sync Project with Gradle Files** dan **Run**.
 
 ---
 
-### 3️⃣ Navigasi Berdasarkan Kategori
-
-| Kategori | Halaman |
-|--------|---------|
-| Pribadi | Homepage Pribadi |
-| Company | Homepage Company |
+## 📝 Catatan Pengembangan
+- **Jetifier:** Aktif (`android.enableJetifier=true`) untuk mendukung library legacy.
+- **Cleartext Traffic:** Diizinkan melalui `network_security_config.xml` untuk mendukung komunikasi `http` selama masa pengembangan lokal.
 
 ---
-
-## 🏠 Homepage Pribadi
-
-### 🔹 Sewa Tabung
-- Menampilkan peta lokasi (OpenStreetMap)
-- Marker menunjukkan:
-  - Lokasi branch
-  - Jumlah tabung tersedia
-- Klik lokasi → detail stok
-- Untuk menyewa:
-  - Scan QR Code di lokasi
-  - QR Code berisi:
-    - Kode tabung
-    - Berat tabung
-    - ID branch
-- Setelah scan:
-  - Upload foto kondisi awal tabung
-  - Pilih tanggal pengembalian
-  - Hitung harga sewa per hari
-- Lanjut ke pembayaran (Midtrans)
-
----
-
-### 🔹 Beli Tabung
-- Menampilkan lokasi branch
-- Scan QR Code tabung
-- Tampilkan harga
-- Pembayaran menggunakan Midtrans
-
----
-
-## 🏢 Homepage Company
-
-Digunakan untuk pelanggan perusahaan (kerjasama).
-
-**Form Kerjasama:**
-- Nama perusahaan
-- Alamat perusahaan
-- Kontak penanggung jawab
-
-Fitur tambahan:
-- Sistem pengantaran dan penjemputan tabung
-- Digunakan untuk pengisian ulang tabung
-- Pembayaran via Midtrans
-
----
-
-## 🧭 Struktur Navigasi Aplikasi
-
-Main Page berisi:
-- Home
-- History
-- Profile
-- Logout
-
----
-
-## 📜 History Transaksi
-
-### 🔹 History Baru
-- Transaksi aktif
-- Menampilkan QR Code pengembalian
-
-### 🔹 History Lama
-- Transaksi selesai
-- Arsip data
-
----
-
-## 🔁 Sistem Pengembalian Tabung
-
-- Pelanggan scan QR Code pengembalian
-- Sistem menampilkan upload foto kondisi tabung
-- Jika terdapat kerusakan:
-  - Sistem menghitung denda sesuai kerusakan
-- Konsep mirip sistem tap KRL (GoTransit)
-
----
-
-## 🗺️ Teknologi yang Digunakan
-
-### Android (Frontend)
-- Java
-- Android Studio
-- Activity & Fragment
-- Bottom Navigation
-- Bottom Sheet
-- OSMDroid (OpenStreetMap)
-- Camera & QR Scanner
-
-### Backend
-- FastAPI (REST API)
-
-### Database
-- MySQL
-
-### Payment Gateway
-- Midtrans
-
+© 2026 OxiraAPP - Teknologi untuk Kemanusiaan.

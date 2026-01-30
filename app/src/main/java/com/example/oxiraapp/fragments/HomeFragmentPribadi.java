@@ -138,7 +138,9 @@ public class HomeFragmentPribadi extends Fragment {
 
             tvNama.setText(lokasi.nama);
             tvAlamat.setText(lokasi.alamat);
-            tvStokItem.setText("Stok: " + lokasi.stok + " tabung");
+            
+            // ✅ PERBAIKAN: Menampilkan Stok Sewa & Stok Beli secara terpisah di kartu ruko
+            tvStokItem.setText("Sewa: " + lokasi.stokSewa + " | Beli: " + lokasi.stokBeli);
 
             itemView.setOnClickListener(v -> {
                 for (int i = 0; i < containerLokasi.getChildCount(); i++) {
@@ -148,7 +150,9 @@ public class HomeFragmentPribadi extends Fragment {
                 
                 lokasiTerpilih = lokasi.nama;
                 tvStok.setVisibility(View.VISIBLE);
-                tvStok.setText("Stok tersedia: " + lokasi.stok + " tabung");
+                
+                // ✅ PERBAIKAN: Detail stok saat kartu dipilih
+                tvStok.setText("Stok Sewa: " + lokasi.stokSewa + " | Stok Beli: " + lokasi.stokBeli);
                 layoutActionButtons.setVisibility(View.VISIBLE);
                 
                 mapView.getController().animateTo(new GeoPoint(lokasi.lat, lokasi.lng));
@@ -170,7 +174,7 @@ public class HomeFragmentPribadi extends Fragment {
 
     private void loadAllMarkers() {
         List<LokasiTabung> daftar = LokasiRepository.getDaftarLokasi();
-        mapView.getOverlays().clear(); // Bersihkan marker lama
+        mapView.getOverlays().clear();
         for (LokasiTabung lokasi : daftar) {
             addMarker(lokasi);
         }
@@ -183,13 +187,12 @@ public class HomeFragmentPribadi extends Fragment {
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         marker.setTitle(lokasi.nama);
 
-        // --- PERBAIKAN ICON: Tabung Merah (stok <= 0) & Tabung Hijau (stok > 5) ---
-        int drawableRes = (lokasi.stok <= 0) ? R.drawable.tabung_merah : R.drawable.tabung_hijau;
+        //  LOGIKA ICON: Merah jika salah satu stok habis (0)
+        int drawableRes = (lokasi.stokSewa <= 0 || lokasi.stokBeli <= 0) ? R.drawable.tabung_merah : R.drawable.tabung_hijau;
         Drawable icon = ContextCompat.getDrawable(requireContext(), drawableRes);
         
         if (icon != null) {
-            // Sesuaikan ukuran icon (misal 40dp x 40dp)
-            int sizePx = (int) (15 * getResources().getDisplayMetrics().density);
+            int sizePx = (int) (20 * getResources().getDisplayMetrics().density);
             Bitmap bitmap = ((BitmapDrawable) icon).getBitmap();
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, sizePx, sizePx, false);
             marker.setIcon(new BitmapDrawable(getResources(), scaledBitmap));
